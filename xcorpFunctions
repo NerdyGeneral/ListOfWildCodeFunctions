@@ -1,0 +1,163 @@
+//Welcome to the most absurd (and only) C functions list I have mostly developed myself.
+
+
+
+
+
+
+
+
+//Inludes-------------------
+#include <stdio.h>
+#include <Windows.h>
+
+
+
+
+
+//Launch Screen, think 80's Alien nostalgia---------------------------------------------
+
+void launch_screen() //pointless overdramatic copyright, and cool 80's nostalga
+{
+
+    Sleep(rand() % 250);
+    printf("-----------------------------------------------\n");
+    Sleep(rand() % 250);
+    printf("Steenburgen Systems \n");
+    Sleep(rand() % 500);
+    printf("Building better grades \n");
+    Sleep(rand() % 250);
+    printf("Copyright 2025, No rights reserved \n");
+    Sleep(rand() % 250);
+      
+    
+}
+
+
+
+
+
+//Corporate Hedader------------------------
+
+void corp_header(int lastline) //Literally just the launch screen without the loading time //Idea, I want to merge all the labs into some phony operating system, so we have a main screen that you choose which program to run.
+//Make a git repo for my specific functions
+{
+
+	printf("-----------------------------------------------\n");
+	printf("Steenburgen Systems \n");
+	printf("Building better grades \n");
+	printf("Copyright 2025, No rights reserved \n");
+	if (lastline == 1)
+	{
+		printf("-----------------------------------------------\n");
+	}
+}
+
+
+
+
+
+//Lab Ttile --------------------------------
+
+void lab_title(const char lab[50]) //This honestly could be merged with Launch_screen, may decide too, idk. I enjoy copy and pasting from previous labs?
+// I want to add an option to input the lab name as a variable UPDATE: DONE! 6/22/25
+{
+
+	//Outside Line Establishment
+	printf("-----------------------------------------------\n");
+
+	//Lab Title Below in titled string
+	//char lab[] = "COSC 1420 Week 3/Lab 3 Gas/Milage";                  //Throw Lab name here if I decide to reuse this (UPDATE: I did reuse this)
+
+	//Output lab Name
+	printf("%s", "Now begining: ");
+	printf("%s", lab);
+	printf("\n-----------------------------------------------\n");
+
+	//Begin Line breaks
+	printf("\n \n \n \n");
+
+}
+
+
+
+
+
+
+//Loading Wheel--------------------------------------
+
+void loadingWheel(int t) //It is actually 11:39 at night and I have to work, why am I making a loading bar
+{
+    int p = 0;
+    printf("Loading:  \n\n");
+    printf("|\n");
+          
+
+
+
+    
+    printf("---------------------------------------------");
+    printf("\033[F");
+    printf("\033[F");
+    printf("---------------------------------------------\n");
+    printf("|");
+
+    int count = 0;
+    while (count <= t)
+    {
+        int fakedelay = 2; //Simulates delay, am adjusting because I need to debug
+        
+        int current = count * 10;
+        printf("%d",current);
+        printf("%s", "%%");
+        
+        printf("\b|");
+        Sleep(fakedelay);
+        
+        printf("\b/");
+        Sleep(fakedelay);
+
+        printf("\b-");
+        Sleep(fakedelay);
+
+        printf("\b\\");
+        Sleep(fakedelay);
+
+        count++;
+
+        
+    }  
+    printf("|");
+   
+    Sleep(100);
+
+    
+    printf("\r #################COMPLETED#################   "); //Clear Space
+    printf("\a\n\n\n\n");
+}
+
+
+
+
+
+//Clearing Lines--------------------------------------------------
+
+void clearLine(int amount) //Lines to clear
+{
+
+    int count = 0;
+    while (count <= amount)
+    {
+        printf("\033[F");
+        printf("\r                                                                                             ");
+
+
+
+        count++;
+    }
+
+    printf("\n"); //Returns line
+
+
+}//clears specified amount of lines, need to make a reverse equiv
+
