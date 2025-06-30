@@ -159,5 +159,93 @@ void clearLine(int amount) //Lines to clear
     printf("\n"); //Returns line
 
 
-}//clears specified amount of lines, need to make a reverse equiv
+}//clears specified amount of lines, need to make a reverse equiv, Need to edit to where it actually clears the line and does not just print white space over
+
+
+
+
+//Compound Interest, not finished---------------------
+
+double cmpdInt(double principal, double rate, int years)
+{
+	double amount;
+
+	for (int loopcount = 1; loopcount <= years; loopcount++)
+	{
+		amount = principal * pow(1.0 + rate, (double) loopcount);
+	}
+
+	return amount;
+}
+
+
+
+
+//2 col Table output in string--------------------
+
+void tableoutput2r(int dist1, const char *col1,int dist2, const char *col2) //'*' shows dynamic field widths, not meant for actual work. Meant strickly for console output
+{
+
+	//printf("%4d%21.2f", year, amount)" took this line from textbook, reworked it
+	printf("%*s%*s\n",dist1, col1, dist2, col2);
+
+
+}
+
+
+
+//Enterline, because no one should have to type \n 50 times---------------------------
+
+void enterButt(int n, int put_or_print) //Yes, I know this is me being lazy. But this is designed to effectlively help me stop typing "\n" so much, if 2ed var is 1 then it outputs as put, else it just uses a printline
+{
+
+	for (int loop = 0; loop <= n; loop++)
+	{
+		if (put_or_print == 1)
+		{
+			puts("\n");
+		}
+		else
+		{
+			printf("\n");
+		}
+
+	}
+
+
+}
+
+
+
+//Wait for input that is either 1 or -1 based upon input. Function has both options available-------------------------
+
+void waitForOne(int negOrPos) // If Var is 1 then it will require input from use to be negative
+{
+	
+	
+	int userIn;
+	int waitingForCorrectInput = 0;
+	
+
+	while (waitingForCorrectInput == 0)
+	{
+		scanf_s("%d", &userIn);
+
+		if ((int)userIn == 1 && negOrPos != 1)
+		{
+			waitingForCorrectInput = 1;
+		}
+		if (((int)userIn == -1 && (negOrPos == 1)))
+		{
+			waitingForCorrectInput = 1;
+		}
+
+
+	}
+		
+}
+
+
+
+
 
