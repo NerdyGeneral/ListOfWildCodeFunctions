@@ -9,8 +9,10 @@
 
 //Inludes-------------------
 #include <stdio.h>
+#include <stdlib.h>
 #include <Windows.h>
-
+#include <math.h>
+#include <time.h>
 
 
 
@@ -244,6 +246,168 @@ void waitForOne(int negOrPos) // If Var is 1 then it will require input from use
 	}
 		
 }
+
+
+//-------------------------------------------------------------------------------
+//--- DataLace program's begin: 
+//The purpose of data lace is to allow array manipulation with integrated size so you do not have to pass the size of the array manually, they are dynamic as well.
+
+
+
+
+//Desgined to convert a static array with known sizes to a DataLace array. XYZ Represent values of the 3d array, and the ** represents the datalaced array being written
+
+void statToDLa3dE(int x, int y, int z, int arrayinput[x][y][z], int **datalaced_array) //static to datalace array 3d- Empty array [23]
+{
+
+	int totalSize = x * y * z; //Simplifies this so it is not one giant line below
+	int *flatVer = malloc((totalSize+1)*(sizeof(arrayinput[0][0][0]))); //Calculates byte size needed for DataLace, adds 1 due to meta data being encoded
+	int flatLoc;
+
+	if (flatVer == NULL)
+	{
+		printf("Error occured at process: [DL23-NR] / %p ", (void *)arrayinput); //Process DL23 had a null return
+		return;
+	}
+
+
+	if ((x < 0) ||  (y < 0) ||  (z < 0))
+	{
+		printf("Error occured at process: [DL23-NV] \n X:  %d, Y: %d, Z: %d \n", x,y,z) ; //Process DL23 had a Negative Value
+		return;
+	}
+
+
+
+	flatVer[0] = (x * 1000000) + (y * 1000) + z; //Set size of Datalaced array in grid "0,0,0" ie spot 0
+
+
+
+
+
+	for(int xCount = 0; xCount < x; xCount++)
+	{
+
+		for(int yCount = 0; yCount < y; yCount++)
+		{
+			for(int zCount = 0; zCount < z; zCount++)
+			{
+
+
+
+
+				flatLoc = xCount * y * z + yCount * z + zCount;
+
+				flatVer[flatLoc+1] = arrayinput[xCount][yCount][zCount];
+
+
+
+
+
+
+
+			}
+		}
+
+	}
+
+	*datalaced_array = flatVer;
+	return;
+
+}
+
+
+
+
+// Outputs the XYZ dimensions as a data lace format. More for debugging----------------------------------------------------
+void sizetotextDL(int x, int y, int z)
+{
+	int final;
+	final = (x * 1000000) + (y * 1000) + z;
+    
+    	printf("%d", final);
+}
+
+
+
+//Will populate an array with a random assortment of values between the minimum and maximum ammounts provided, dimensions must be provided ---------------------------
+//TD: Need to create a DataLace version that does not require dimensions, also a version for no repeats (Honestly for a random with no repeats it would be better to just generate an array full 
+//		ints and reshuffle it.
+
+void arrayGenINT(int min, int max, int row, int column,int tempGenArray[row][column])
+{
+    
+    srand(time(NULL));
+    
+    
+    
+    int rowCount = 0; //X counter for array gen 
+    int columnCount = 0; // Y count for array gen
+
+    
+    
+
+    
+    
+    while(rowCount < row)
+    {
+        columnCount = 0;
+        
+    
+        while(columnCount < column)
+        {
+            
+            
+            
+            tempGenArray[rowCount][columnCount] = (min + rand() % (max - min + 1));
+            
+            
+            columnCount++;
+        }
+        
+        
+        
+        rowCount++;
+    }
+    
+    
+}
+
+
+//Outputs dimensions of the Datalace Array as XYZ--------------------------------------------------------------------------------------
+void arraySizeReturnDbgPrnt(int *arrayinput) //Need to add input for array, uses MALLOC, arrays must be flated and be dynamic
+{
+    
+    
+    
+    int x,y,z; //Initialize variables
+    
+    
+    int h = arrayinput[0];
+    
+    x = ((h-1000000000)/1000000); //Get X
+    
+    y = (((h-1000000000)-(x*1000000))/1000); //Get Y
+    
+    z = (((h-1000000000)-(x*1000000))-(y*1000)); //Get Z
+    
+    
+    printf("%d", x); //Maybe convert to  printf("X: %d", x);
+    printf("%s", "\n");
+    
+    printf("%d", y);
+    printf("%s", "\n");
+    
+    printf("%d", z);
+    printf("%s", "\n");
+    
+    
+}
+
+
+
+
+
 
 
 
