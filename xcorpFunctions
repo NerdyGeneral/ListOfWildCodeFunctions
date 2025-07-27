@@ -363,6 +363,75 @@ Using Example:
 */
 
 
+//----------------------------------------------------------------------------
+//---Basic Math output
+
+
+//-------------------Adds and prints output
+void add(double a, double b) 
+{
+    double hold;
+
+    hold = a + b;
+
+    printf("Your answer is %.2lf\n", hold);
+}
+
+
+//-------------------Subtracts and prints output
+void subtract(double a, double b)
+{
+    double hold;
+
+    hold = a - b;
+
+    printf("Your answer is %.2lf\n", hold);
+}
+
+
+
+//-------------------Multiply and prints output
+void multiply(double a, double b)
+{
+
+    double hold;
+
+    hold = a * b;
+
+    printf("Your answer is %.2lf\n", hold);
+}
+
+
+
+//-------------------Divide and prints output
+void divide(double a, double b)
+{
+
+    double hold;
+
+    hold = a / b;
+
+    printf("Your answer is %.2lf\n", hold);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //-------------------------------------------------------------------------------
 //--- DataLace program's begin: 
 //The purpose of data lace is to allow array manipulation with integrated size so you do not have to pass the size of the array manually, they are dynamic as well.
